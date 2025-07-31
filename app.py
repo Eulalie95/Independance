@@ -2,14 +2,12 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# --- CONFIG PAGE ---
 st.set_page_config(
     page_title="65 ans d’indépendance en données",
     page_icon="🇧🇯",
     layout="wide"
 )
 
-# --- STYLE PERSONNALISÉ (thème national) ---
 st.markdown("""
     <style>
         body {background-color: #fff;}
@@ -23,11 +21,10 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- TITRE ---
 st.title("🇧🇯 65 ans d’indépendance en données")
 st.subheader("Un voyage visuel à travers l’évolution du Bénin depuis 1960")
 
-# --- CHARGEMENT DES DONNÉES ---
+# CHARGEMENT DES DONNÉES
 @st.cache_data
 def load_data():
     data = {
@@ -42,7 +39,7 @@ def load_data():
 
 data = load_data()
 
-# --- MENU DE NAVIGATION ---
+# MENU DE NAVIGATION
 menu = st.sidebar.radio("Explore :", [
     "Accueil",
     "Population",
@@ -55,14 +52,13 @@ menu = st.sidebar.radio("Explore :", [
     "Le savais-tu ?"
 ])
 
-# --- FONCTION DE GRAPHIQUE ---
+# FONCTION DE GRAPHIQUE
 def show_chart(df, x_col, y_col, title, color="#008751"):
     fig = px.line(df, x=x_col, y=y_col, markers=True, title=title, line_shape="spline")
     fig.update_traces(line=dict(color=color, width=4))
     fig.update_layout(plot_bgcolor='white', title_font_size=20)
     st.plotly_chart(fig, use_container_width=True)
 
-# --- PAGE : ACCUEIL ---
 if menu == "Accueil":
     pop = data["Population"]
     debut = pop.iloc[0]
@@ -78,7 +74,7 @@ if menu == "Accueil":
 
     st.info("Explorez les autres onglets pour visualiser l’évolution du pays dans plusieurs domaines clés.")
 
-# --- AUTRES PAGES ---
+# AUTRES PAGES 
 elif menu == "Population":
     show_chart(data["Population"], "Année", "Population", "Évolution de la population béninoise")
 
@@ -108,7 +104,7 @@ elif menu == "Projets & Infrastructures":
         st.write(row["description"])
         st.markdown("---")
 
-# --- PAGE : LE SAVAIS-TU ---
+# PAGE : LE SAVAIS-TU 
 elif menu == "Le savais-tu ?":
     st.markdown("## Historiques")
     anecdotes = [
@@ -128,7 +124,7 @@ elif menu == "Le savais-tu ?":
 
     st.markdown("---")
 
-# --- FOOTER ---
+# FOOTER 
 st.markdown("---")
 st.caption("Projet de visualisation réalisé par Eulalie O. IDJATON – 2025 ©")
 
