@@ -69,7 +69,7 @@ if menu == "Accueil":
     st.success(
         f"En **{int(debut['Année'])}**, le Bénin comptait **{int(debut['Population']):,} habitants**.\n"
         f"En **{int(fin['Année'])}**, la population a atteint **{int(fin['Population']):,}** habitants, "
-        f"soit une croissance de **{croissance}%** en 64 ans."
+        f"soit une croissance de **{croissance}%** en 65 ans."
     )
 
     st.info("Explorez les autres onglets pour visualiser l’évolution du pays dans plusieurs domaines clés.")
@@ -85,7 +85,7 @@ elif menu == "Alphabétisation":
     show_chart(data["Alphabetisation"], "Année", "Taux_alphabetisation", "Taux d'alphabétisation (%)")
 
 elif menu == "Électricité":
-    show_chart(data["Electricite"], "Année", "Acces_electricite", "⚡ Accès à l'électricité (%)")
+    show_chart(data["Electricite"], "Année", "Acces_electricite", "Accès à l'électricité (%)")
 
 elif menu == "Internet":
     show_chart(data["Internet"], "Année", "Acces_internet", "Accès à Internet (%)")
@@ -99,7 +99,7 @@ elif menu == "Projets & Infrastructures":
 
     projets_df = pd.read_csv("data/projets.csv")
     for _, row in projets_df.iterrows():
-        st.markdown(f"### 📍 {row['nom']} ({row['lieu']} – {row['annee']})")
+        st.markdown(f"### {row['nom']} ({row['lieu']} – {row['annee']})")
         st.image(f"assets/projets/{row['fichier']}", use_column_width=True)
         st.write(row["description"])
         st.markdown("---")
