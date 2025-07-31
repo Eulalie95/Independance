@@ -94,13 +94,13 @@ elif menu == "Élections":
     show_chart(data["Elections"], "Année", "Taux_participation", "Taux de participation aux élections présidentielles")
 
 elif menu == "Projets & Infrastructures":
-    st.markdown("## 🏗️ Infrastructures et Projets réalisés")
+    st.markdown("## Infrastructures et Projets réalisés")
     st.markdown("Voici quelques grands projets mis en œuvre au Bénin ces dernières années.")
 
     projets_df = pd.read_csv("data/projets.csv")
     for _, row in projets_df.iterrows():
         st.markdown(f"### {row['nom']} ({row['lieu']} – {row['annee']})")
-        st.image(f"assets/projets/{row['fichier']}", use_column_width=True)
+        st.image(f"assets/projets/{row['fichier']}")
         st.write(row["description"])
         st.markdown("---")
 
